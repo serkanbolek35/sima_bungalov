@@ -1,0 +1,99 @@
+@import "tailwindcss";
+@import "yet-another-react-lightbox/styles.css";
+@import "@fontsource/fraunces/400.css";
+@import "@fontsource/fraunces/500.css";
+@import "@fontsource/fraunces/600.css";
+@import "@fontsource/fraunces/300-italic.css";
+@import "@fontsource/manrope/400.css";
+@import "@fontsource/manrope/500.css";
+@import "@fontsource/manrope/600.css";
+@import "@fontsource/manrope/700.css";
+
+:root {
+  /* ---- Sima Bungalov design tokens ---- */
+  --ink-night: #0f1b14;      /* deep pine-black, night sections */
+  --pine-deep: #1f3d2b;      /* forest hedge green */
+  --pine-mid: #2c4d38;
+  --amber-ember: #c9793d;    /* warm night-lighting glow */
+  --amber-soft: #e0a15f;
+  --pool-teal: #2f8f8c;      /* illuminated pool water */
+  --pool-teal-light: #6fbdb8;
+  --warm-oak: #c9a876;       /* wood cladding tone */
+  --mist-cream: #f1ede2;     /* warm off-white, day sections */
+  --mist-cream-dim: #e8e1d0;
+  --stone-ink: #26241f;      /* body text on cream */
+
+  --background: var(--mist-cream);
+  --foreground: var(--stone-ink);
+}
+
+@theme inline {
+  --color-ink-night: var(--ink-night);
+  --color-pine-deep: var(--pine-deep);
+  --color-pine-mid: var(--pine-mid);
+  --color-amber-ember: var(--amber-ember);
+  --color-amber-soft: var(--amber-soft);
+  --color-pool-teal: var(--pool-teal);
+  --color-pool-teal-light: var(--pool-teal-light);
+  --color-warm-oak: var(--warm-oak);
+  --color-mist-cream: var(--mist-cream);
+  --color-mist-cream-dim: var(--mist-cream-dim);
+  --color-stone-ink: var(--stone-ink);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "Manrope", "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background: var(--amber-ember);
+  color: var(--mist-cream);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--amber-ember);
+  outline-offset: 3px;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

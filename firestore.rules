@@ -1,0 +1,43 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // Bungalovlar: herkes okuyabilir (site üstünde gösterilecek),
+    // sadece admin yazabilir (fiyat/kapasite/aktiflik değişikliği).
+    match /bungalows/{bungalowId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Sık sorulan sorular: herkes okuyabilir, sadece admin düzenler.
+    match /faq/{faqId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Genel iletişim/işletme ayarları: herkes okuyabilir, sadece admin düzenler.
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Rezervasyonlar: MÜŞTERİ VERİSİ İÇERİR — sadece admin okuyabilir/yazabilir.
+    match /reservations/{reservationId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Admin listesi: bir kullanıcı SADECE kendi admin kaydını okuyabilir
+    // (giriş sonrası "admin miyim?" kontrolü için). Yazma her zaman kapalı —
+    // yeni admin eklemek istersen Firebase Console > Firestore'dan elle eklenir.
+    match /admins/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+  }
+}
