@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, MessageCircle, AtSign, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, MessageCircle, AtSign, Clock, ShieldCheck } from "lucide-react";
 import { useSettings } from "@/lib/public-data";
 import { whatsappLink, defaultWhatsappMessage } from "@/lib/whatsapp";
 import { droneSection } from "@/lib/content";
@@ -93,6 +93,16 @@ export default function LocationContact() {
               className="mt-8 flex items-center justify-center gap-2 rounded-full bg-amber-ember py-3.5 text-sm font-medium text-white transition-colors hover:bg-amber-soft"
             >
               <MessageCircle size={17} /> WhatsApp&apos;tan Yaz
+            </a>
+
+            <a
+              href="https://savibu.org.tr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 flex items-center justify-center gap-1.5 text-xs text-mist-cream/50 hover:text-amber-soft"
+            >
+              <ShieldCheck size={13} />
+              SAVİBU Üyesidir — dolandırıcılığa karşı doğrulanmış işletme
             </a>
           </motion.div>
         </div>

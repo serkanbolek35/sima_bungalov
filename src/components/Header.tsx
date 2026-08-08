@@ -5,11 +5,12 @@ import Link from "next/link";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { useSettings } from "@/lib/public-data";
 import { whatsappLink, defaultWhatsappMessage } from "@/lib/whatsapp";
+import { Logo } from "./Logo";
 
 const navItems = [
   { href: "/#hakkimizda", label: "Hakkımızda" },
   { href: "/#bungalovlar", label: "Bungalovlar" },
-  { href: "/#galeri", label: "Galeri" },
+  { href: "/galeri", label: "Galeri" },
   { href: "/#konum", label: "Konum" },
   { href: "/#iletisim", label: "İletişim" },
 ];
@@ -33,8 +34,8 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <Link href="/" className="font-display text-lg tracking-wide text-mist-cream">
-          Sima <span className="text-amber-soft">Bungalov</span>
+        <Link href="/" className="flex items-center">
+          <Logo />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

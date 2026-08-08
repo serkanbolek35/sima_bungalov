@@ -42,6 +42,15 @@ export default function Home() {
           <GallerySection key={s.id} {...s} />
         ))}
 
+        <section className="bg-mist-cream px-5 pb-20 pt-4 text-center">
+          <a
+            href="/galeri"
+            className="inline-flex items-center gap-2 rounded-full border border-pine-deep px-6 py-3 text-sm font-medium text-pine-deep transition-colors hover:bg-pine-deep hover:text-white"
+          >
+            Tüm 135 Fotoğrafı ve 35 Videoyu Gör
+          </a>
+        </section>
+
         <Amenities />
         <Faq />
         <LocationContact />

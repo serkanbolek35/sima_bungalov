@@ -23,9 +23,14 @@ export default function BungalowsPage() {
 
   useEffect(() => {
     const unsub = onSnapshot(collection(db, "bungalows"), (snap) => {
-      if (snap.empty) return; // henüz seed edilmemiş — varsayılanları göster
-      const list = snap.docs.map((d) => ({ id: d.id, ...d.data() } as Bungalow)).sort((a, b) => a.order - b.order);
-      setBungalows(list);
+      const saved = snap.docs.reduce<Record<string, Bungalow>>((acc, d) => {
+        acc[d.id] = { id: d.id, ...d.data() } as Bungalow;
+        return acc;
+      }, {});
+      // Firestore'da kaydedilmiş olanları al, kaydedilmemiş olanlar için
+      // varsayılanları göster — böylece 4 bungalov her zaman görünür.
+      const merged = defaults.map((d) => saved[d.id] ?? d);
+      setBungalows(merged);
     });
     return unsub;
   }, []);

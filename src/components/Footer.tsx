@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { AtSign, Mail, Phone, MapPin } from "lucide-react";
+import { AtSign, Mail, Phone, MapPin, ShieldCheck } from "lucide-react";
 import { useSettings } from "@/lib/public-data";
+import { Logo } from "./Logo";
 
 export default function Footer() {
   const settings = useSettings();
@@ -10,9 +11,7 @@ export default function Footer() {
     <footer className="bg-ink-night px-5 py-14 text-mist-cream/80">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 md:grid-cols-4">
         <div>
-          <p className="font-display text-xl text-mist-cream">
-            Sima <span className="text-amber-soft">Bungalov</span>
-          </p>
+          <Logo markClassName="h-8 w-8 text-mist-cream" textClassName="font-display text-xl text-mist-cream" />
           <p className="mt-3 text-sm leading-relaxed text-mist-cream/60">
             Sapanca&apos;nın doğasında, ısıtmalı özel havuzlu 4 bağımsız bungalov.
           </p>
@@ -58,7 +57,19 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-12 max-w-6xl border-t border-white/10 pt-6 text-xs text-mist-cream/40">
+      <div className="mx-auto mt-10 max-w-6xl border-t border-white/10 pt-6">
+        <a
+          href="https://savibu.org.tr"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-full border border-amber-soft/30 px-4 py-2 text-xs font-medium text-amber-soft transition-colors hover:border-amber-soft/60"
+        >
+          <ShieldCheck size={14} />
+          SAVİBU Üyesidir — Sapanca Villa ve Bungalov İşletmecileri Derneği
+        </a>
+      </div>
+
+      <div className="mx-auto mt-6 max-w-6xl border-t border-white/10 pt-6 text-xs text-mist-cream/40">
         © {new Date().getFullYear()} Sima Bungalov. Tüm hakları saklıdır.
       </div>
     </footer>

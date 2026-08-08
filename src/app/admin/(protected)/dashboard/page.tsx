@@ -4,18 +4,25 @@ import { useEffect, useState } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { Card } from "@/components/ui/primitives";
-import type { Reservation } from "@/lib/types";
+import type { Reservation, Bungalow } from "@/lib/types";
 import { CalendarClock, Users, TrendingUp } from "lucide-react";
 import Link from "next/link";
 
 export default function DashboardPage() {
   const [reservations, setReservations] = useState<Reservation[]>([]);
+  const [bungalows, setBungalows] = useState<Bungalow[]>([]);
 
   useEffect(() => {
-    const unsub = onSnapshot(collection(db, "reservations"), (snap) => {
+    const unsub1 = onSnapshot(collection(db, "reservations"), (snap) => {
       setReservations(snap.docs.map((d) => ({ id: d.id, ...d.data() } as Reservation)));
     });
-    return unsub;
+    const unsub2 = onSnapshot(collection(db, "bungalows"), (snap) => {
+      setBungalows(snap.docs.map((d) => ({ id: d.id, ...d.data() } as Bungalow)));
+    });
+    return () => {
+      unsub1();
+      unsub2();
+    };
   }, []);
 
   const today = new Date().toISOString().slice(0, 10);
@@ -76,7 +83,7 @@ export default function DashboardPage() {
             <div key={r.id} className="flex items-center justify-between px-5 py-3 text-sm">
               <div>
                 <p className="font-medium text-stone-800">{r.guestName}</p>
-                <p className="text-xs text-stone-400">{r.bungalowId} · {r.guestCount} kişi</p>
+                <p className="text-xs text-stone-400">{bungalows.find((x) => x.id === r.bungalowId)?.name ?? r.bungalowId} · {r.guestCount} kişi</p>
               </div>
               <div className="text-right">
                 <p className="text-stone-700">{r.checkIn} → {r.checkOut}</p>

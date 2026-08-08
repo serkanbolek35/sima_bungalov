@@ -154,7 +154,7 @@ export const lifestyleImages: GalleryImage[] = [
   { src: img("lifestyle", "lifestyle-02.webp"), alt: "Sima Bungalov kahvaltı keyfi" },
   { src: img("lifestyle", "lifestyle-03.webp"), alt: "Sima Bungalov şarap eşliğinde huzurlu an" },
   { src: img("lifestyle", "lifestyle-04.webp"), alt: "Sima Bungalov gece mum ışığı" },
-  { src: img("lifestyle", "lifestyle-05.webp"), alt: "Sima Bungalov ikili kahvaltı anı" },
+  { src: img("lifestyle", "lifestyle-05.webp"), alt: "Sima Bungalov kahvaltı sofrası" },
 ];
 
 export const amenities = [

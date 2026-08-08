@@ -26,7 +26,7 @@ export default function Intro() {
           </p>
           <p className="mt-4 text-base leading-relaxed text-stone-ink/70">
             Her bungalova özel ısıtmalı havuz, kapalı bahçe ve konforlu iç mekanlar
-            eşlik ediyor — ister ikili bir kaçamak, ister ailenizle huzurlu bir
+            eşlik ediyor — ister arkadaşlarınızla, ister ailenizle huzurlu bir
             tatil planlıyor olun, Sima Bungalov yılın her döneminde sizi bekliyor.
           </p>
           <div className="mt-8 grid grid-cols-3 gap-6 border-t border-stone-ink/10 pt-6">

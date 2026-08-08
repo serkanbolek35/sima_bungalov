@@ -42,12 +42,17 @@ export function useBungalows(): Bungalow[] {
   const [bungalows, setBungalows] = useState<Bungalow[]>(fallbackBungalows);
   useEffect(() => {
     const unsub = onSnapshot(collection(db, "bungalows"), (snap) => {
-      if (snap.empty) return;
-      const list = snap.docs
-        .map((d) => ({ id: d.id, ...d.data() } as Bungalow))
+      const saved = snap.docs.reduce<Record<string, Bungalow>>((acc, d) => {
+        acc[d.id] = { id: d.id, ...d.data() } as Bungalow;
+        return acc;
+      }, {});
+      // Kaydedilmemiş bungalovlar için varsayılanı kullan, böylece
+      // admin henüz hepsini doldurmasa bile sitede 4 ünite görünür.
+      const merged = fallbackBungalows
+        .map((d) => saved[d.id] ?? d)
         .filter((b) => b.active)
         .sort((a, b) => a.order - b.order);
-      if (list.length) setBungalows(list);
+      setBungalows(merged);
     });
     return unsub;
   }, []);

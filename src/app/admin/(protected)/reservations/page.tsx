@@ -159,7 +159,7 @@ export default function ReservationsPage() {
                   <p className="font-medium text-stone-800">{r.guestName}</p>
                   <p className="text-xs text-stone-400">{r.phone}</p>
                 </td>
-                <td className="px-4 py-3 text-stone-600">{r.bungalowId}</td>
+                <td className="px-4 py-3 text-stone-600">{bungalows.find((x) => x.id === r.bungalowId)?.name ?? r.bungalowId}</td>
                 <td className="px-4 py-3 text-stone-600">{r.checkIn}</td>
                 <td className="px-4 py-3 text-stone-600">{r.checkOut}</td>
                 <td className="px-4 py-3 text-stone-600">{r.guestCount}</td>
