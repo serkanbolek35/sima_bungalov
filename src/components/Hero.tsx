@@ -19,7 +19,7 @@ export default function Hero() {
         playsInline
         poster={heroVideo.poster}
       >
-        <source src={heroVideo.src} type="video/webm" />
+        <source src={heroVideo.src} type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-t from-ink-night via-ink-night/40 to-ink-night/10" />
       <div className="absolute inset-0 bg-gradient-to-r from-ink-night/60 via-transparent to-ink-night/30" />

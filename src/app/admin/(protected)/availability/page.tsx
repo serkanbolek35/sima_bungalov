@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { mergeBungalows } from "@/lib/bungalow-defaults";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -25,7 +26,7 @@ export default function AvailabilityPage() {
       setReservations(snap.docs.map((d) => ({ id: d.id, ...d.data() } as Reservation)));
     });
     const unsub2 = onSnapshot(collection(db, "bungalows"), (snap) => {
-      setBungalows(snap.docs.map((d) => ({ id: d.id, ...d.data() } as Bungalow)).sort((a, b) => a.order - b.order));
+      setBungalows(mergeBungalows(snap.docs.map((d) => ({ id: d.id, ...d.data() } as Bungalow))));
     });
     return () => {
       unsub1();

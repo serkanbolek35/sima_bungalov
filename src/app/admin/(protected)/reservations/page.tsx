@@ -12,6 +12,7 @@ import {
   orderBy,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { mergeBungalows } from "@/lib/bungalow-defaults";
 import { Button, Input, Select, Label, Card, Textarea } from "@/components/ui/primitives";
 import type { Reservation, ReservationStatus, Bungalow } from "@/lib/types";
 import { Plus, Trash2, X } from "lucide-react";
@@ -39,7 +40,7 @@ export default function ReservationsPage() {
       setReservations(snap.docs.map((d) => ({ id: d.id, ...d.data() } as Reservation)));
     });
     const unsub2 = onSnapshot(collection(db, "bungalows"), (snap) => {
-      setBungalows(snap.docs.map((d) => ({ id: d.id, ...d.data() } as Bungalow)).sort((a, b) => a.order - b.order));
+      setBungalows(mergeBungalows(snap.docs.map((d) => ({ id: d.id, ...d.data() } as Bungalow))));
     });
     return () => {
       unsub1();

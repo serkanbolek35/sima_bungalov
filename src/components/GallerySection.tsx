@@ -48,7 +48,7 @@ export default function GallerySection({
           </p>
         </motion.div>
 
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4">
+        <div className="mt-12 columns-2 gap-3 sm:columns-3 md:gap-4">
           {images.map((img, i) => (
             <motion.button
               key={img.src}
@@ -57,13 +57,14 @@ export default function GallerySection({
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, delay: (i % 6) * 0.06 }}
               onClick={() => setIndex(i)}
-              className={`relative aspect-square overflow-hidden rounded-xl ${i === 0 ? "col-span-2 row-span-2 aspect-square sm:aspect-auto" : ""}`}
+              className="mb-3 block w-full overflow-hidden rounded-xl break-inside-avoid md:mb-4"
             >
               <Image
                 src={img.src}
                 alt={img.alt}
-                fill
-                className="object-cover transition-transform duration-500 hover:scale-105"
+                width={600}
+                height={600}
+                className="h-auto w-full object-cover transition-transform duration-500 hover:scale-105"
                 sizes="(min-width: 768px) 30vw, 45vw"
               />
             </motion.button>
